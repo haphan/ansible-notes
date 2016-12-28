@@ -1,6 +1,5 @@
 ##Ansible journey of an Symfony developer
 
-
 ###Getting started
 
 Ansible is a configuration management with an agent-less approach, meaning there is no pre-installed software needed in remote machines.
@@ -70,3 +69,11 @@ hongkong
 See list of support vendor https://github.com/ansible/ansible/tree/devel/contrib/inventory
 
 ###Ad-hoc command
+
+`ansible <host_matching_pattern> -m <module_name> -a <arguments>`
+
+- `*` and `all` match all hosts
+- `webservers:dbservers` matches hosts in multiple group (OR)
+- `webservers:&dev` maches hosts belongs to both groups (AND)
+
+
