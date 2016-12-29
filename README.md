@@ -21,6 +21,19 @@ ansible 2.2.0.0
   configured module search path = Default w/o overrides
 ```
 
+###Configuration file
+Loaded in the following order
+
+```
+* ANSIBLE_CONFIG (an environment variable)
+* ansible.cfg (in the current directory)
+* .ansible.cfg (in the home directory)
+* /etc/ansible/ansible.cfg
+```
+
+Sample config https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg 
+
+
 ###Inventory
 
 Hosts or remote machines are defined in inventory files and can be grouped, nested.
@@ -65,15 +78,34 @@ singapore
 hongkong
 ```
 
-####Dynamic Inventory
-See list of support vendor https://github.com/ansible/ansible/tree/devel/contrib/inventory
+###Dynamic Inventory
+See list of supported vendors https://github.com/ansible/ansible/tree/devel/contrib/inventory
 
-###Ad-hoc command
+###Host matching pattern
 
 `ansible <host_matching_pattern> -m <module_name> -a <arguments>`
 
 - `*` and `all` match all hosts
+- `*.example.com` wildcard matching
 - `webservers:dbservers` matches hosts in multiple group (OR)
 - `webservers:&dev` maches hosts belongs to both groups (AND)
+- `webservers:!{{excluded}}:&{{required}}` using variable
+- `~(web|db).*\.example\.com` regex matching
 
+###Ad-hoc command
 
+Execute abitrary command
+```bash
+ansible hosts -a '/bin/echo foo'
+```
+
+Execute module command
+
+```bash
+ansible webservers -m yum -a "name=acme state=present"
+```
+Execute long runing command in the background
+
+```bash
+ansible all -B 3600 -P 0 -a "/usr/bin/long_running_operation --do-stuff"
+```
