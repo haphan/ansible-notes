@@ -1,4 +1,5 @@
-##Ansible journey of an Symfony developer
+##Ansible journey of an Developer
+#####*Pocket guide to Ansbile in 10 min*
 
 ###Getting started
 
@@ -32,6 +33,7 @@ Loaded in the following order
 ```
 
 Sample config https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg 
+Documentation http://docs.ansible.com/ansible/intro_configuration.html
 
 
 ###Inventory
@@ -109,3 +111,19 @@ Execute long runing command in the background
 ```bash
 ansible all -B 3600 -P 0 -a "/usr/bin/long_running_operation --do-stuff"
 ```
+
+##Playbook
+
+Written in yml format, playbook is used to manage and deploy to remote machines. At a more advanced level, playbook can sequence multi-tier rollouts involving rolling updates, and can delegate actions to other hosts, interacting with monitoring servers and load balancers.
+
+###Examples
+
+Official playbook example:
+https://github.com/ansible/ansible-examples
+
+Openstack Ansible (More serious and real-world scenario):
+https://github.com/openstack/openstack-ansible/tree/master/playbooks
+
+
+
+
